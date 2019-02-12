@@ -43,7 +43,7 @@ bool findComments(string comments[1000], int size)
 					{ 
 						for (unsigned short int i = 1; i < buffer.size(); i++ )
 						{ 
-							if (buffer[i] != 32i && buffer[i] != 9) 
+							if (buffer[i] != 32 && buffer[i] != 9) 
 							{ 
 								if (buffer[i] == 64)
 								{ 
