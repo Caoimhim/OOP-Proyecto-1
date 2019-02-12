@@ -22,12 +22,13 @@ string parseLine(string buffer)
 		{ 
 			if (buffer[i] == 64)
 			{ 
+				buffer = buffer.substr(i);
 				return buffer;
 			}
 			else
 			{ 
 				i = buffer.size();
-					return "\0";
+				return "\0";
 			}
 		}
 	}
