@@ -13,6 +13,27 @@ using namespace std;
 
 //Global variables
 string filename;
+string parseLine(string buffer)
+{ 
+	
+	for (unsigned short int i = 1; i < buffer.size(); i++ )
+	{ 
+		if (buffer[i] != 32 && buffer[i] != 9) 
+		{ 
+			if (buffer[i] == 64)
+			{ 
+				buffer = buffer.substr(i);
+				return buffer;
+			}
+			else
+			{ 
+				i = buffer.size();
+				return "\0";
+			}
+		}
+	}
+	return "\0";
+}
 
 bool findComments(string comments[1000], int size)
 { 
@@ -41,20 +62,8 @@ bool findComments(string comments[1000], int size)
 					}
 					else if (buffer[0] == 32 || buffer[0] == 9)
 					{ 
-						for (unsigned short int i = 1; i < buffer.size(); i++ )
-						{ 
-							if (buffer[i] != 32 && buffer[i] != 9) 
-							{ 
-								if (buffer[i] == 64)
-								{ 
-									cout << buffer << endl;
-								}
-								else
-								{ 
-									i = buffer.size();
-								}
-							}
-						}
+						buffer = parseLine(buffer);
+						cout << buffer << endl;
 					}
 				}
 			}
