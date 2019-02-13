@@ -28,18 +28,19 @@ string parseLine(string buffer)
 			else
 			{ 
 				i = buffer.size();
-				return "\0";
+				return "-1";
 			}
 		}
 	}
-	return "\0";
+	return "-1";
 }
+
 
 bool findComments(string comments[1000], int size)
 { 
 	size = 0;
 	ifstream file;
-	file.open (filename);
+	file.open (filename.c_str());
 	if (!file.is_open())
 	{ 
 		cout << "No se encontro el archivo " << filename;
@@ -58,21 +59,40 @@ bool findComments(string comments[1000], int size)
 				{ 
 					if ( buffer[0] == '@')
 					{ 
-						cout << buffer << endl;
+						comments[size++] = buffer;
 					}
 					else if (buffer[0] == 32 || buffer[0] == 9)
 					{ 
 						buffer = parseLine(buffer);
-						cout << buffer << endl;
+						if (buffer != "-1")
+						{ 
+							comments[size++] = buffer;
+						}
+						
 					}
 				}
 			}
 		}
 	}
 
+	file.close();
 	return true;
 }
 
+void writeHTML( string comments[1000], int size)
+{ 
+	ofstream file;
+	string htmlName = filename.substr(0, filename.size()-3);
+	htmlName.append("html");
+
+	file.open(htmlName.c_str());
+	file << "<!DOCTYPE html>\n<html>\n";
+
+
+
+	file << "</html>";
+	file.close();
+}
 int main (int argc, char *argv[])
 { 
 	if (argc  < 2)
@@ -104,7 +124,7 @@ int main (int argc, char *argv[])
 	//parseComments();
 
 	//Output
-	//writeHTML();
+	writeHTML(comments, size);
 	
 	return 0;
 }

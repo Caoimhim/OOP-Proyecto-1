@@ -4,6 +4,7 @@ Comentarios para prube de proyecto 1: Documentación en HTML
 @desc El programa pide al usuario entrar numeros en la consola, y encuentra los pícos, tomando los datos como un arreglo círcular.
 @author Kevin Chinchilla
 A00825945@itesm.mx
+@notATag welp
 @date 16 de enero, 2019
 */
 #include <iostream>
