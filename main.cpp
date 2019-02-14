@@ -79,6 +79,7 @@ bool findComments(string comments[1000], int size)
 	return true;
 }
 
+//Continue here
 void writeHTML( string comments[1000], int size)
 { 
 	ofstream file;
@@ -87,12 +88,18 @@ void writeHTML( string comments[1000], int size)
 
 	file.open(htmlName.c_str());
 	file << "<!DOCTYPE html>\n<html>\n";
+	for (short int i = 0; i < size; i++)
+	{ 
+		string oLine = checkTags(comments[i]); //Actually write this function, please
+		cout << oLine << endl;
+		file << oLine << endl;
 
-
+	}
 
 	file << "</html>";
 	file.close();
 }
+
 int main (int argc, char *argv[])
 { 
 	if (argc  < 2)
