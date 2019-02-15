@@ -1,4 +1,4 @@
-# HTML Documenter
+# Doc Generator
 
 Writes documentation for a C++ program in HTML.
 
