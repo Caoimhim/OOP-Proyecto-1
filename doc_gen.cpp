@@ -149,7 +149,7 @@ void writeSection ( ofstream &oFile, int pos, string comments[1000])
 
 /**
  @funcName writeHTML
- @desc Escribe rl archivo HTML con la documentación
+ @desc Escribe el archivo HTML con la documentación
  @param El arreglo con los comentarios a procesar, y el tamaño de este
  @return NONE
  */
