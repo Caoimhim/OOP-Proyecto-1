@@ -3,7 +3,7 @@
 Writes documentation for a C++ program in HTML.
 
 ## Valid tags
-- @porgName
+- @progName
 - @author
 - @date
 - @funcName
