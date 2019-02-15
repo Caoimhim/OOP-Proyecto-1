@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Documentación del archivo main.cpp</title>
+</head>
+<body>
+<h2>
+Programa: HTML Documentator<br>
+</h2>
+<strong>Descripición:</strong> Crea Documentación de archivos en HTML<br>
+<strong>Autor:</strong> Kevin Chinchilla<br>
+<strong>Fecha de elaboración:</strong> 15 de febrero, 2019<br>
+<hr><h3>
+Función:  parseLine<br>
+</h3>
+<strong>Descripición:</strong> Revisa si la línea tiene una tag de documentación, y elimina los espacios en blanco antes de la tag si existen<br>
+<strong>Parametros:</strong> La string a revisar<br>
+<strong>Valor de retorno:</strong> La línea, si contiene el tag, o nulo, si no<br>
+<hr><h3>
+Función:  findComments<br>
+</h3>
+<strong>Descripición:</strong> Busca comentarios en el formato correcto para documentar<br>
+<strong>Parametros:</strong> Un arreglo de strings donde se guardaran los comentarios para procesar, y el tamaño de este arreglo<br>
+<strong>Valor de retorno:</strong> Verdadero, si todo sale bien, falso si no encuentra el archivo a revisar<br>
+<hr><h3>
+Función:  findTitle<br>
+</h3>
+<strong>Descripición:</strong> Busca la tag que contiene el nombre del programa<br>
+<strong>Parametros:</strong> El arreglo de strings con los comentarios a procesar, y el tamaño de este.<br>
+<strong>Valor de retorno:</strong> La posición del arreglo donde está el nombre del programa, o -1 si no se euncuentra un nombre para el programa<br>
+<hr><h3>
+Función:  writeSection<br>
+</h3>
+<strong>Descripición:</strong> Escribe una sección de docmentación que incluyen autor, fecha de creación, parámetros y valor de retorno<br>
+<strong>Parametros:</strong> El stream para escribir el archivo, la posición del arreglo dónde inicia la sección, y el arreglo con los comentarios a procesar<br>
+<strong>Valor de retorno:</strong> NONE<br>
+<hr><h3>
+Función:  writeHTML<br>
+</h3>
+<strong>Descripición:</strong> Escribe rl archivo HTML con la documentación<br>
+<strong>Parametros:</strong> El arreglo con los comentarios a procesar, y el tamaño de este<br>
+<strong>Valor de retorno:</strong> NONE<br>
+<hr><h3>
+Función:  main<br>
+</h3>
+<strong>Descripición:</strong> Llama todas las otras funciones<br>
+<strong>Parametros:</strong> Se puede pasar como parametro el nombre del programa a revisar<br>
+<strong>Valor de retorno:</strong> 0<br>
+<hr></body>
+</html>
