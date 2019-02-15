@@ -36,7 +36,7 @@ string parseLine(string buffer)
 }
 
 
-bool findComments(string comments[1000], int size)
+bool findComments(string comments[1000], int &size)
 { 
 	size = 0;
 	ifstream file;
@@ -57,7 +57,7 @@ bool findComments(string comments[1000], int size)
 				getline(file, buffer);
 				if ( buffer.find('@') != buffer.npos )
 				{ 
-					if ( buffer[0] == '@')
+					if ( buffer[0] == '@' || buffer.find("*/") != buffer.npos)
 					{ 
 						comments[size++] = buffer;
 					}
@@ -79,15 +79,54 @@ bool findComments(string comments[1000], int size)
 	return true;
 }
 
+
+int findTitle(string comments [1000], int size)
+{ 
+	for ( short int i = 0; i < size; i++)
+	{ 
+		if (comments[i].find("@progName") != comments[i].npos)
+		{ 
+			return i;
+		}
+	}
+	return -1;
+}
 //Continue here
 void writeHTML( string comments[1000], int size)
 { 
-	ofstream file;
+	ofstream oFile;
 	string htmlName = filename.substr(0, filename.size()-3);
 	htmlName.append("html");
+	
+	oFile.open(htmlName.c_str());
+	oFile << "<!DOCTYPE html>\n<html>\n";
 
-	file.open(htmlName.c_str());
-	file << "<!DOCTYPE html>\n<html>\n";
+	//write header
+	string buffer;
+	oFile << "<head>\n";
+	oFile << "<title>Documentación del archivo " << filename << "</title>\n";
+	oFile << "</head>\n";
+
+	oFile << "<body>\n";
+
+
+	//make title
+	int titlePos = findTitle(comments, size);
+	if (titlePos > -1)
+	{ 
+		int bufferStart = comments[titlePos].find(" ");
+		buffer = comments[titlePos].substr(bufferStart+1);
+	}
+	else
+	{ 
+		buffer = filename.substr(0, filename.size()-4);
+	}
+	oFile << "<h2>\nPrograma: " << buffer << "<br>\n</h2>\n";
+
+
+
+
+	/*	
 	for (short int i = 0; i < size; i++)
 	{ 
 		string oLine = checkTags(comments[i]); //Actually write this function, please
@@ -95,9 +134,11 @@ void writeHTML( string comments[1000], int size)
 		file << oLine << endl;
 
 	}
+	*/
 
-	file << "</html>";
-	file.close();
+	oFile << "</body>\n";
+	oFile << "</html>";
+	oFile.close();
 }
 
 int main (int argc, char *argv[])
@@ -116,7 +157,7 @@ int main (int argc, char *argv[])
 
 	//Variables
 	string comments[1000];
-	int size = 0;
+	int size;
 	bool check;
 
 	//Input
@@ -125,10 +166,6 @@ int main (int argc, char *argv[])
 	{ 
 		return 0;
 	}
-		
-
-	//Processing
-	//parseComments();
 
 	//Output
 	writeHTML(comments, size);
